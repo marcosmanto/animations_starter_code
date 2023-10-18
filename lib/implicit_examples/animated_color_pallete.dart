@@ -49,7 +49,8 @@ class _AnimatedColorPaletteState extends State<AnimatedColorPalette> {
             for (Color color in currentPalette)
               Expanded(
                 child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 250),
+                  curve: Curves.easeOutCirc,
+                  duration: const Duration(milliseconds: 300),
                   width: size.width * getRandomDoubleBetween(.5, .75),
                   //height: 100,
                   color: color,
