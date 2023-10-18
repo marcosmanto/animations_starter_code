@@ -30,8 +30,14 @@ class _AnimatedColorPaletteState extends State<AnimatedColorPalette> {
     });
   }
 
+  double getRandomDoubleBetween(double min, double max) {
+    return min + Random().nextDouble() * (max - min + double.minPositive);
+  }
+
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Color Palette Generator'),
@@ -41,15 +47,22 @@ class _AnimatedColorPaletteState extends State<AnimatedColorPalette> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             for (Color color in currentPalette)
-              Container(
-                width: 100,
-                height: 100,
-                color: color,
-                margin: const EdgeInsets.all(8),
+              Expanded(
+                child: Container(
+                  width: size.width * getRandomDoubleBetween(.5, .75),
+                  //height: 100,
+                  color: color,
+                  margin: const EdgeInsets.all(8),
+                ),
               ),
-            ElevatedButton(
-              onPressed: regeneratePalette,
-              child: const Text('Generate New Palette'),
+            Container(
+              padding: const EdgeInsets.all(12),
+              margin: const EdgeInsets.only(bottom: 10),
+              height: 80,
+              child: ElevatedButton(
+                onPressed: regeneratePalette,
+                child: const Text('Generate New Palette'),
+              ),
             ),
           ],
         ),
