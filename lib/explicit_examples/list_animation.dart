@@ -53,8 +53,11 @@ class _ListAnimationState extends State<ListAnimation>
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          print(controller.status);
           controller.isCompleted || controller.isAnimating
-              ? controller.reverse()
+              ? controller.status == AnimationStatus.reverse
+                  ? controller.forward()
+                  : controller.reverse()
               : controller.forward();
         },
         child: const Icon(Icons.done),
