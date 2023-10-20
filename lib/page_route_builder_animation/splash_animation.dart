@@ -29,23 +29,7 @@ class _SplashAnimationState extends State<SplashAnimation>
         });*/
 
         Navigator.of(context)
-            .push(
-              PageRouteBuilder(
-                transitionDuration: const Duration(seconds: 1),
-                reverseTransitionDuration: const Duration(milliseconds: 500),
-                pageBuilder: (context, animation, secondaryAnimation) {
-                  return const Destination();
-                },
-                transitionsBuilder:
-                    (context, animation, secondaryAnimation, child) {
-                  return FadeTransition(
-                    opacity: CurvedAnimation(
-                        parent: animation, curve: Curves.easeInExpo),
-                    child: child,
-                  );
-                },
-              ),
-            )
+            .push(MyCustomRouteTransition(route: const Destination()))
             .then((value) => controller.reset());
       }
     });
